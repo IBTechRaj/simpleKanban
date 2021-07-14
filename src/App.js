@@ -4,16 +4,6 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import _ from 'lodash'
 import { v4 } from 'uuid'
 
-// const item = {
-//   id: v4(),
-//   name: 'Clean the house'
-// }
-
-// const item2 = {
-//   id: v4(),
-//   name: 'Wash the car'
-// }
-
 function App() {
   const [text, setText] = useState('')
   const [state, setState] = useState({
@@ -25,11 +15,6 @@ function App() {
       title: 'Doing',
       items: []
     }
-    // ,
-    // done: {
-    //   title: 'Completed',
-    //   items: []
-    // }
   })
 
   const handleDragEnd = ({ destination, source }) => {
@@ -69,7 +54,6 @@ function App() {
             {
               id: v4(),
               name: text
-              // <button onClick={addItem}>Del</button>
             },
             ...prev.todo.items
           ]
@@ -80,14 +64,6 @@ function App() {
     setText('')
   }
 
-  const delItem = id => {
-    // setState(prev => {
-    //   let items = prev.inprogress.items
-    //   const index = items.findIndex(item => item.id === id)
-    //   items.splice(index, 1)
-    //   return { items }
-    // })
-  }
 
   return (
     <div className='App'>
@@ -127,21 +103,13 @@ function App() {
                               console.log(snapshot, 'el', el.name)
                               return (
                                 <div
-                                  className={`item ${
-                                    snapshot.isDragging && 'dragging'
-                                  }`}
+                                  className={`item ${snapshot.isDragging && 'dragging'
+                                    }`}
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
                                 >
                                   {el.name}
-                                  <button
-                                    onClick={delItem(el)}
-                                    className={key === 'todo' ? 'hide' : 'show'}
-                                    // style={{ marginBottom: 0, display: 'none' }}
-                                  >
-                                    Del
-                                  </button>
                                 </div>
                               )
                             }}
